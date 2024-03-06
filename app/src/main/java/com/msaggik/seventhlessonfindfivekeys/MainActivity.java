@@ -3,6 +3,7 @@ package com.msaggik.seventhlessonfindfivekeys;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -31,13 +32,17 @@ public class MainActivity extends AppCompatActivity {
         // заполнение массива координат выбранными числами, где чётные это координаты X, а нечётные координыты Y
         coordinatesKeys = new int[10];
 
-        for (int i = 0; i < 5; i++) {
-            if(i % 2 != 0){
-                coordinatesKeys[i] = ((int) (Math.random() * (380)));
+        for (int i = 0; i < 10; i++) {
+            if(i % 2 == 0){
+                coordinatesKeys[i] = ((int) (Math.random() * (1300)));
+                Log.i("XYParam","X" + i + " = " + coordinatesKeys[i]);
             }else {
-                coordinatesKeys[i] = ((int) (Math.random() * (550)));
+                coordinatesKeys[i] = ((int) (Math.random() * (1900)));
+                Log.i("XYParam","Y" + i + " = " + coordinatesKeys[i]);
             }
         }
+
+        Log.i("MaxPar",screen.getWidth() + " " + screen.getHeight());
 
         // обработка касания TextView
         screen.setOnTouchListener(listener);
@@ -47,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
     private View.OnTouchListener listener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
+
+            Log.i("MaxPar",screen.getWidth() + " " + screen.getHeight());
 
             // определение координат касания
             x = motionEvent.getX();
